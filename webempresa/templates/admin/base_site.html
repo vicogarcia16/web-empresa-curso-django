@@ -1,0 +1,28 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+{% block extrastyle %}
+<style>
+  #header {
+    background: #4c2d1b
+  }
+  #content-main [class^="app-"] table caption {
+    background: #4c2d1b;
+    color: white;
+    padding: 10px; 
+  }
+</style>
+
+{% endblock extrastyle %}
+{% block branding %}
+<h1 id="site-name">
+  <a href="{% url 'admin:index' %}">
+    <img src="{% static "logo.png" %}" height="40px">
+  </a>
+</h1>
+{% if user.is_anonymous %}
+  {% include "admin/color_theme_toggle.html" %}
+{% endif %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
